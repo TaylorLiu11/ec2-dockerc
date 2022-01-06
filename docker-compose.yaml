@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     env_file:
       - ./env/mysql.env
+    volumes:
+      - data:/var/lib/mysql
   wordpress:
     image: 'wordpress'
     restart: unless-stopped
@@ -14,3 +16,8 @@ services:
       - mysql
     ports:
       - '80:80'
+    volumes:
+      - wordpress:/var/www/html
+volumes:
+  data:
+  wordpress:
